@@ -4,6 +4,13 @@ import matplotlib.pyplot as plt
 import matplotlib
 import math
 
+#open image
+#calculate center of image and input that as guess of centroid
+#extract box around calculated centroid
+#rotate box and subtract the two arrays
+#normalize if necessary
+#calculate 
+
 imgData= pyfits.getdata("sampleimage.fits") #extracts array of pixel values
 plt.imshow(imgData)
 plt.gray()
