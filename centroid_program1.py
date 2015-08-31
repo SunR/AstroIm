@@ -3,13 +3,18 @@ import pyfits
 import matplotlib.pyplot as plt
 import matplotlib
 import math
+from pydl.photoop.photoobj import unwrap_objid
 
 #open image
 #calculate center of image and input that as guess of centroid
 #extract box around calculated centroid
 #rotate box and subtract the two arrays
 #normalize if necessary
-#calculate 
+#calculate
+
+dr7objid = 587722952230175035 #currently using dr7objid of entry #2 of combined1_half1 (first spiral galaxy)
+
+params = unwrap_objid(array([587722952230174000])) [0] #returns list of skyversion, rerun, camcol, frame (field), id
 
 imgData= pyfits.getdata("sampleimage.fits") #extracts array of pixel values
 plt.imshow(imgData)
