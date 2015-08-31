@@ -12,19 +12,21 @@ from pydl.photoop.photoobj import unwrap_objid
 #normalize if necessary
 #calculate
 
-dr7objid = 587722952230175035 #currently using dr7objid of entry #2 of combined1_half1 (first spiral galaxy)
+#path to this file:/sas/dr12/boss/photoObj/frames/301/1/40/frame-u-1:06d-745-2:04d.fits.bz2
 
-params = unwrap_objid(array([587722952230174000])) [0] #returns list of skyversion, rerun, camcol, frame (field), id
+#dr7objid = 587722952230175035 #currently using dr7objid of entry #2 of combined1_half1 (first spiral galaxy)
 
-imgData= pyfits.getdata("sampleimage.fits") #extracts array of pixel values
+#params = unwrap_objid(array([587722952230174000])) [0] #returns list of skyversion, rerun, camcol, frame (field), id
+
+imgData= pyfits.getdata("fpC-000745-u2-0518.fit.gz") #extracts array of pixel values
 plt.imshow(imgData)
 plt.gray()
-#plt.show()
+plt.show()
 centerX = input("Please enter center X coordinate: ") #gets user input center x coord of star, try 1055 for this image
 centerY = input("Please enter center Y coordinate: ") #gets user input center y coord of star, try 350 for this image
 centroidX = 0
 centroidY = 0
-side = input("Please enter the side length of the square you would like to analyze, in pixels: ") #try 20 for this image, any smaller is not big enough for star
+side = 500 #radius of box to cut around centroid
 
 
 def getImageData():
@@ -55,7 +57,7 @@ def calculateCentroid(selectedData): #calculates weighted averages
     actualX = centroidX + centerX - side/2 - 1 #adds calculated centroid difference to actual center pixel, adjusting by -1 for shift in matrix indices
     actualY = centroidY + centerY - side/2 - 1
     print "Centroid: (", actualX, "," , actualY, ")"
-    getUncertainty(actualX, actualY, selectedData, sumIntensities) #calculates uncertainties for centroid calculations
+    #getUncertainty(actualX, actualY, selectedData, sumIntensities) #calculates uncertainties for centroid calculations
     
 calculateCentroid(getImageData())
 
